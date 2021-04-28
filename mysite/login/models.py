@@ -7,17 +7,11 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Users(models.Model):
-    id = models.DecimalField(primary_key=True, max_digits=65535, decimal_places=65535)
-    name = models.CharField(max_length=10)
+    res = models.DecimalField(max_digits=65535, decimal_places=65535)
+    name = models.CharField(max_length=100)
     password = models.DecimalField(max_digits=65535, decimal_places=65535)
-
-    def __str__(self):
-        return f' id = {self.id}, name = {self.name}'
 
     class Meta:
         managed = False
         db_table = 'users'
-
-

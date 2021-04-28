@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
+
+</head>
+<body>
+<div class="container d-flex  justify-content-center align-items-center flex-column">
+    <div class="row text-center w-25 ">
+
+        <form action="{% url 'autorization' %}" class="h-100" method="post">
+            <div class=" d-flex  justify-content-center align-items-center flex-column h-100">
+                <div class="d-flex justify-content-center flex-column align-items-center xs-10 mt-auto">
+                    {% csrf_token %}
+                    <!--                     <select class="form-control form-control-lg " name="res" id="res" target="_blank">-->
+                    <!--	                  <option value="1">1 - ВРЭС</option>-->
+                    <!--	                  <option value="2">2 - ЗРЭС</option>-->
+                    <!--	                  <option value="3">3 - СРЭС</option>-->
+                    <!--	                  <option value="4">4 - ЮРЭС</option>-->
+                    <!--	                </select>-->
+                    <input type="text" class="form-control form-control-lg mt-2 " placeholder="имя" name="name"
+                           id="name">
+                    <input type="password" class="mt-2 form-control form-control-lg " placeholder="пароль"
+                           name="password"
+                           id="password">
+                    <button type="submit" class="mt-2 btn btn-primary btn-lg">Отправить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

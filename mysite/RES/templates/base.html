@@ -7,16 +7,16 @@
     <meta name="author" content="">
 
     <title>{% block title %} {% endblock %}</title>
-    {% load static%}
-    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
+    {% load static %}
 
+    <link href="{% static 'res/css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-dark navbar-light bg-light">
-    <div class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="navbarSupportedContent">
+<nav class="navbar-header  bg-dark navbar-light bg-light ">
+    <div class="navbar navbar-expand-md navbar-dark bg-dark " id="navbarSupportedContent">
         <!--        <div class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
@@ -26,7 +26,7 @@
                         Меркурий TCP/IP
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tcp">
-                        <a class="dropdown-item" href="#">Просмотр всех ТП</a>
+                        <a class="dropdown-item" href="{% url 'menu' %}">Просмотр всех ТП</a>
                         <a class="dropdown-item" href="#">Добавить ТП</a>
                         <a class="dropdown-item" href="#">удалить ТП</a>
                     </div>
@@ -63,23 +63,36 @@
                 </div>
             </li>
         </ul>
-      <a class="btn btn-outline-success my-2 my-sm-0" href="http://127.0.0.1:8000/login/logout">Выйти</a>
+
+        <a class="btn btn-outline-success my-2 my-sm-0" href="http://127.0.0.1:8000/login/logout">Выйти</a>
 
     </div>
 
 </nav>
-<main role="main" class="container">
-    {% block menu %}
-    {% endblock %}
-    {% block content %}
+{% block menu %}
 
-    {% endblock %}
+{% endblock %}
 
+{#<div class="container" >#}
+{#    {% block menu %}#}
+{##}
+{#    {% endblock %}#}
+{#    {% block content %}#}
+{##}
+{#    {% endblock %}#}
+{##}
+{##}
+{#</div>#}
 
-</main>
-
-<!--    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>-->
 </body>
-<script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
-<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
 </html>

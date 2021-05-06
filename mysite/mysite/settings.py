@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap',
-    'fontawesome',
+    'bootstrap5',
+    # 'fontawesome',
 ]
 
 
@@ -87,8 +87,8 @@ DATABASES={
       'ENGINE':'django.db.backends.postgresql_psycopg2',
       'NAME':'mercury2020',
       'USER':'postgres',
-      'PASSWORD':'postgres',
-      'HOST':'localhost',
+      'PASSWORD':'',
+      'HOST':'192.168.143.177',
       'PORT':'5432',
    }
 }
@@ -136,8 +136,10 @@ STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+STATIC_ROOT = ''
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

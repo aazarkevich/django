@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
-    'VRES',
     'login',
+    'RES',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

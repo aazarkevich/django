@@ -20,7 +20,7 @@ class Autorization(View):
                 # print(group)
                 # return render(request, 'main/index.html',{'name': name, 'password': password})
                 # print(user.groups.all()[0])
-                return HttpResponseRedirect(f'http://127.0.0.1:8000/{user.groups.all()[0]}/')
+                return HttpResponseRedirect(f'http://127.0.0.1:8000/res/{user.groups.all()[0]}/')
         else:
             return HttpResponse('Неверный логин или пароль')
 

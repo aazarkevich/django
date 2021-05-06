@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='Users',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('res', models.DecimalField(decimal_places=65535, max_digits=65535)),
+                ('RES', models.DecimalField(decimal_places=65535, max_digits=65535)),
                 ('name', models.CharField(max_length=100)),
                 ('password', models.DecimalField(decimal_places=65535, max_digits=65535)),
             ],

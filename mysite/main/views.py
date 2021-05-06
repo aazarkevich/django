@@ -19,10 +19,7 @@ def mercury_tcp(request):
 def mercury_gsm(request):
     return render(request, 'main/mercury_gsm.html')
 
-def redidect_res(name_res):
-    if name_res == 'VRES':
-        return redirect('/VRES/')
 
 @login_required(login_url='/login/')
 def vres(request):
-    return render(request, 'VRES/tcp.html')
+    return redirect('RES/VRES/')

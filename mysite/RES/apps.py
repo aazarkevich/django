@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ZresConfig(AppConfig):
+class ResConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'ZRES'
+    name = 'RES'

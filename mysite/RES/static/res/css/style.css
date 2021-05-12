@@ -1,5 +1,23 @@
-#menu-all-tp {
-    /*background-color: black;*/
-    /*width: 350px;*/
-    /*height: 100%;*/
+/*Menu ТП*/
+.tree, .tree ul {
+    list-style-type: none;
+}
+
+.tree span:hover {
+    font-weight: bold;
+ }
+
+ .tree span {
+    cursor: pointer;
+  }
+
+.hide {
+
+}
+
+.tree .hide::before {
+    content: "+";
+}
+.tree .show::before {
+    content: "-";
 }

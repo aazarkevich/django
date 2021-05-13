@@ -1,3 +1,8 @@
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
 /*Menu ТП*/
 .tree, .tree ul {
     list-style-type: none;

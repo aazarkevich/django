@@ -80,6 +80,7 @@ class Migration(migrations.Migration):
                 ('power_day', models.CharField(blank=True, max_length=100, null=True)),
                 ('error', models.CharField(blank=True, max_length=100, null=True)),
                 ('date', models.DateField(blank=True, null=True)),
+
             ],
             options={
                 'db_table': 'data_mercury_v',

@@ -151,10 +151,10 @@ class DataMercuryV(models.Model):
     power_day = models.CharField(max_length=100, blank=True, null=True)
     error = models.CharField(max_length=100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
-    id_tp = models.ForeignKey('TreeDeviceMercuryV', on_delete=models.PROTECT, null=True)
+    id_tp = models.ForeignKey('TreeDeviceMercuryV', on_delete=models.PROTECT, null=True, db_column='id_tp')
 
-    def __str__(self):
-        return str(self.serial_number)
+    # def __str__(self):
+    #     pass
 
     class Meta:
         managed = False

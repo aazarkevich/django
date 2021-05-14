@@ -136,7 +136,7 @@ class TreeDeviceMercuryU(models.Model):
 
 class TreeDeviceMercuryV(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    parent_id = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    parent_id = models.ForeignKey('self', on_delete=models.PROTECT, null=True, db_column='parent_id')
 
     class Meta:
         managed = False

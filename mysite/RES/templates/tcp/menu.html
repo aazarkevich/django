@@ -39,11 +39,13 @@
             </thead>
             <tbody>
 {#                {% set k = 1}#}
+            {% if values %}
                 {% for value in values %}
                     <tr>
-                        <td>1</td>
-                        <td>ТП</td>
-                        <td>Т</td>
+
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ value.id_tp.parent_id.name }}</td>
+                        <td>{{ value.id_tp.name }}</td>
                         <td>{{ value.serial_number }}</td>
                         <td>{{ value.energy_reset_sum }}</td>
                         <td>{{ value.power_sum }}</td>
@@ -51,15 +53,12 @@
                         <td>{{ value.date }}</td>
                     </tr>
                 {% endfor %}
-
+            {% else %}
+                <td>Нет данных</td>
+            {% endif %}
             </tbody>
         </table>
 
-        {% for value in values %}
-            <span>
-                {{ value.serial_number }}
-            </span>
-        {% endfor %}
     </div>
 {% endblock %}
 

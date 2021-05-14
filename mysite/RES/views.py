@@ -12,4 +12,5 @@ def menu(request):
 
 
     if str(request.user.groups.all()[0]) == 'VRES':
-        return render(request,'tcp/menu.html', {'menu': TreeMenuV.objects.all(), 'values': DataMercuryV.objects.filter(date='2021-05-13') })
+        return render(request,'tcp/menu.html', {'menu': TreeMenuV.objects.all(), 'values': DataMercuryV.objects.filter(date='2021-05-14').order_by('id') })
+ 

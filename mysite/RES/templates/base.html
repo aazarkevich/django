@@ -12,12 +12,13 @@
     <link href="{% static 'res/css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% block css %}
+    {% endblock %}
 </head>
 
 <body>
 <nav class="navbar-header  bg-dark navbar-light bg-light ">
     <div class="navbar navbar-expand-md navbar-dark bg-dark " id="navbarSupportedContent">
-        <!--        <div class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <div class="dropdown show">
@@ -27,7 +28,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tcp">
                         <a class="dropdown-item" href="{% url 'menu' %}">Просмотр всех ТП</a>
-                        <a class="dropdown-item" href="#">Добавить ТП</a>
+                        <a class="dropdown-item" href="{% url 'add_tcp' %}">Добавить ТП</a>
                         <a class="dropdown-item" href="#">удалить ТП</a>
                     </div>
                 </div>
@@ -49,18 +50,21 @@
 
             </li>
             <li class="nav-item dropdown">
-                <div class="dropdown show">
+                <div class="dropdown show mr-2">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="getValue"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Опрос
                     </a>
 
-                    <div class="dropdown-menu" aria-labelledby="getValue">
+                    <div class="dropdown-menu " aria-labelledby="getValue">
                         <a class="dropdown-item" href="#">Опрос в данный момент отдельного счетчика</a>
                         <a class="dropdown-item" href="#">Опрос ТП</a>
                         <a class="dropdown-item" href="#">Опрос всех ТП</a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-secondary " href="http://127.0.0.1:8000/res/">{{ user.groups.all.0 }}</a>
             </li>
         </ul>
 
@@ -73,7 +77,9 @@
     {% block menu %}
     {% endblock %}
     {% block content %}
-
+        <div class="w-100 h-100 text-center">
+            <h1>Привет {{ name_res }}</h1>
+        </div>
     {% endblock %}
 </div>
 

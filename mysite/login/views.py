@@ -16,11 +16,7 @@ class Autorization(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                # group = user.groups
-                # print(group)
-                # return render(request, 'main/index.html',{'name': name, 'password': password})
-                # print(user.groups.all()[0])
-                return HttpResponseRedirect(f'http://127.0.0.1:8000/res/{user.groups.all()[0]}/')
+                return HttpResponseRedirect(f'http://127.0.0.1:8000/res/')
         else:
             return HttpResponse('Неверный логин или пароль')
 
@@ -28,7 +24,3 @@ class Autorization(View):
         logout(request)
         return redirect('/')
 
-# def exit(request):
-#     print(request.GET)
-#     logout(request)
-#     return redirect('/')

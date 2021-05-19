@@ -50,9 +50,6 @@ class DataMercuryU(models.Model):
         db_table = 'data_mercury_u'
 
 
-
-
-
 class DataMercuryZ(models.Model):
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     energy_reset_sum = models.CharField(max_length=100, blank=True, null=True)
@@ -62,7 +59,7 @@ class DataMercuryZ(models.Model):
     power_day = models.CharField(max_length=100, blank=True, null=True)
     error = models.CharField(max_length=100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
-    id_tp = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    id_tp = models.ForeignKey('TreeDeviceMercuryZ', on_delete=models.PROTECT, null=True, db_column='id_tp')
 
     class Meta:
         managed = False
@@ -153,9 +150,6 @@ class DataMercuryV(models.Model):
     date = models.DateField(blank=True, null=True)
     id_tp = models.ForeignKey('TreeDeviceMercuryV', on_delete=models.PROTECT, null=True, db_column='id_tp')
 
-    # def __str__(self):
-    #     pass
-
     class Meta:
         managed = False
         db_table = 'data_mercury_v'
@@ -163,7 +157,7 @@ class DataMercuryV(models.Model):
 
 class TreeDeviceMercuryZ(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    parent_id = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    parent_id = models.ForeignKey('self', on_delete=models.PROTECT, null=True, db_column='parent_id')
 
     class Meta:
         managed = False
@@ -180,4 +174,14 @@ class TreeMenuV(MPTTModel):
     class MPTTmeta:
         order_insertion_by = ['name']
 
+class TreeMenuZ(MPTTModel):
+
+    name = models.CharField(max_length=50, blank=True, null=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+
+    def __str__(self):
+        return self.name
+
+    class MPTTmeta:
+        order_insertion_by = ['name']
 

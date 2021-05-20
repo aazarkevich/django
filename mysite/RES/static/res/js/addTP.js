@@ -1,8 +1,19 @@
-function add_t() {
-    var count_i = document.getElementById("count_device").value;
-    $('#staticBackdrop').modal();
-    for (let i = 0; i < count_i; i++) {
-        prompt('Holle')
+$(document).ready(function () {
+    $('.search_select select').selectpicker();
+})
 
-    }
-}
+$(document).ready(function(){
+    var timesSelectClicked = 0;
+    $('.select_podstation').click(function(e) {
+           if (timesSelectClicked == 0)
+        {
+            timesSelectClicked += 1;
+        }
+        else if (timesSelectClicked == 1)
+        {
+            // alert($('.select_podstation option:selected').val());
+            timesSelectClicked = 1;
+            window.location.href = 'http://127.0.0.1:8000/res/addTcp/showPodstation/' + $('.select_podstation option:selected').val() + '/';
+        }
+  });
+});

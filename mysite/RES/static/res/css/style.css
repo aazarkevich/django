@@ -26,3 +26,16 @@
 .tree .show::before {
     content: "-";
 }
+
+/* AddTcp.html отображение search */
+
+.search_select button:hover {
+    background-color: darkgrey;
+    color: black !important;
+}
+
+.search_select button {
+    background-color: #dae0e6;
+    color: black !important;
+
+}

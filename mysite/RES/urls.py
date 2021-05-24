@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.index),
     path('menu/', views.MercuryTCP_IP.as_view(), name='menu'),
     path('addTcp/', views.add_tcp, name='add_tcp'),
-    path('addTcp/showPodstation/<int:id_podstation>/', views.show_podstation, name='show_podstation')
+    path('addTcp/showSubstation/<int:id_substation>/', views.show_substation, name='show_substation'),
+    path('addTcp/addSubstation/', views.Substation.add_substation, name='show_podstation')
 ]

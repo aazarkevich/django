@@ -39,3 +39,22 @@
     color: black !important;
 
 }
+
+.btn-outline-danger {
+    border-color: #343a40;
+    color: #343a40;
+}
+.btn-outline-danger:hover {
+    background: #606d79;
+    border-color: white;
+    color: white;
+}
+.add-substation {
+    background-color: #dae0e6 !important ;
+}
+.btn.add-substation:active {
+    background-color: #dae0e6 !important;
+    border-color: #dae0e6 !important;
+    color: #dae0e6 !important;
+
+}

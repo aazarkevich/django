@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 $(document).ready(function(){
     var timesSelectClicked = 0;
-    $('.select_podstation').click(function(e) {
+    $('.select_substation').click(function(e) {
            if (timesSelectClicked == 0)
         {
             timesSelectClicked += 1;
@@ -13,7 +13,7 @@ $(document).ready(function(){
         {
             // alert($('.select_podstation option:selected').val());
             timesSelectClicked = 1;
-            window.location.href = 'http://127.0.0.1:8000/res/addTcp/showPodstation/' + $('.select_podstation option:selected').val() + '/';
+            window.location.href = 'http://127.0.0.1:8000/res/addTcp/showSubstation/' + $('.select_substation option:selected').val() + '/';
         }
   });
 });

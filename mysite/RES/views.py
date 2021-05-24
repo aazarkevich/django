@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 from .models import TreeMenuV, DataMercuryV, TreeMenuZ, DataMercuryZ
 from django.views.generic import View
 from django.db.models import Q
+from .forms import AddSubstation
 
 
 def index(request):
@@ -13,11 +14,11 @@ def index(request):
 class MercuryTCP_IP(View):
 
     def get(self, request):
-        return render(request, 'tcp/menu.html', {'menu': self.menu(name_res=request.user.groups.all()[0]),
+        return render(request, 'tcp/menu.html', {'menu': self.show_substation(name_res=request.user.groups.all()[0]),
                                                  'values': self.values_tp(name_res=request.user.groups.all()[0])})
 
     @staticmethod
-    def menu(name_res):
+    def show_substation(name_res):
         if str(name_res) == 'Восточный':
             return TreeMenuV.objects.all()
         elif str(name_res) == 'Западный':
@@ -34,15 +35,33 @@ class MercuryTCP_IP(View):
                 'id')
 
 
+class Substation(View):
+
+    @staticmethod
+    def add_substation(request):
+        if request.method == 'POST':
+            form = AddSubstation(request.POST)
+
+            if form.is_valid():
+                print('True')
+                return HttpResponseRedirect(f'http://127.0.0.1:8000/res/addTcp/')
+        else:
+            form = AddSubstation()
+
+            return form
+
+
 def add_tcp(request):
-    return render(request, 'tcp/addTcp.html', {'menu': MercuryTCP_IP.menu(name_res=request.user.groups.all()[0])})
+    return render(request, 'tcp/addTcp.html',
+                  {'menu': MercuryTCP_IP.show_substation(name_res=request.user.groups.all()[0]),
+                   'form_add_substation': Substation.add_substation(request)})
 
 
-def show_podstation(request, id_podstation):
+def show_substation(request, id_substation):
     # return TreeMenuV.objects.filter(Q(id=2) | Q(parent_id=2))
 
-    return render(request, 'tcp/showPodstation.html',
-                  {'menu': MercuryTCP_IP.menu(name_res=request.user.groups.all()[0]),
-                   'podstation': MercuryTCP_IP.menu(name_res=request.user.groups.all()[0]).filter(
-                       Q(id=id_podstation) | Q(parent_id=id_podstation)),
+    return render(request, 'tcp/showSubstation.html',
+                  {'menu': MercuryTCP_IP.show_substation(name_res=request.user.groups.all()[0]),
+                   'podstation': MercuryTCP_IP.show_substation(name_res=request.user.groups.all()[0]).filter(
+                       Q(id=id_substation) | Q(parent_id=id_substation)),
                    'devices': {}})

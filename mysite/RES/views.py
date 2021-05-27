@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
-from .models import TreeMenuV, DataMercuryV, TreeMenuZ, DataMercuryZ
+from .models import TreeMenuV, TreeMenuS, TreeMenuU, TreeMenuZ, DataMercuryV, DataMercuryZ, DataMercuryS, DataMercuryU
 from django.views.generic import View
 from django.db.models import Q
 from .forms import AddSubstation
@@ -23,6 +23,10 @@ class MercuryTCP_IP(View):
             return TreeMenuV.objects.all()
         elif str(name_res) == 'Западный':
             return TreeMenuZ.objects.all()
+        elif str(name_res) == 'Северный':
+            return TreeMenuS.objects.all()
+        elif str(name_res) == 'Южный':
+            return TreeMenuU.objects.all()
 
     def values_tp(self, name_res):
         if str(name_res) == 'Восточный':
@@ -31,6 +35,14 @@ class MercuryTCP_IP(View):
                 'id')
         elif str(name_res) == 'Западный':
             return DataMercuryZ.objects.filter(
+                date=datetime.now().strftime("%Y-%m-%d")).order_by(
+                'id')
+        elif str(name_res) == 'Северный':
+            return DataMercuryS.objects.filter(
+                date=datetime.now().strftime("%Y-%m-%d")).order_by(
+                'id')
+        elif str(name_res) == 'Южный':
+            return DataMercuryU.objects.filter(
                 date=datetime.now().strftime("%Y-%m-%d")).order_by(
                 'id')
 

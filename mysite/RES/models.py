@@ -168,12 +168,11 @@ class TreeMenuV(MPTTModel):
 
     name = models.CharField(max_length=50, blank=True, null=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    # parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, db_column='parent_id')
     device = models.ForeignKey('DeviceMercuryV', on_delete=models.CASCADE, null=True)
 
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
     class MPTTmeta:
         order_insertion_by = ['name']

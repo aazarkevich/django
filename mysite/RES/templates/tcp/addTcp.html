@@ -24,7 +24,7 @@
 {% endblock %}
 {% block content %}
 <div class="col item">
-    <a type="button" class="btn add-substation" href="/res/addTcp/" data-toggle="modal" data-target="#add_substation">
+    <a type="button" class="btn add-substation" href="{% url 'add_tcp' %}" data-toggle="modal" data-target="#add_substation">
         Добавить подстанцию
     </a>
     <div class="modal fade" id="add_substation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -38,11 +38,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="addSubstation/" method="post">
+
+                    <form action="{% url 'add_substation' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
                             {{ form_add_substation }}
-                            <small id="emailHelp" class="form-text text-muted">Пример: ТП-001</small>
+                            <small id="nameHelp" class="form-text text-muted">Пример: ТП-001</small>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>

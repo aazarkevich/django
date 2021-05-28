@@ -71,7 +71,8 @@ class DeviceMercuryS(models.Model):
     ip = models.CharField(max_length=15)
     port = models.DecimalField(max_digits=65535, decimal_places=65535)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuS', on_delete=models.CASCADE, blank=True, null=True, db_column='parent_id_tp')
+    parent_id_tp = models.ForeignKey('TreeMenuS', on_delete=models.CASCADE, blank=True, null=True,
+                                     db_column='parent_id_tp')
 
     class Meta:
         managed = False
@@ -82,7 +83,8 @@ class DeviceMercuryU(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuU', on_delete=models.CASCADE, blank=True, null=True, db_column='parent_id_tp')
+    parent_id_tp = models.ForeignKey('TreeMenuU', on_delete=models.CASCADE, blank=True, null=True,
+                                     db_column='parent_id_tp')
 
     class Meta:
         managed = False
@@ -93,8 +95,8 @@ class DeviceMercuryV(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuV', on_delete=models.CASCADE, blank=True, null=True, db_column='parent_id_tp')
-
+    parent_id_tp = models.ForeignKey('TreeMenuV', on_delete=models.CASCADE, blank=True, null=True,
+                                     db_column='parent_id_tp')
 
     class Meta:
         managed = False
@@ -105,7 +107,8 @@ class DeviceMercuryZ(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuZ', on_delete=models.CASCADE, blank=True, null=True, db_column='parent_id_tp')
+    parent_id_tp = models.ForeignKey('TreeMenuZ', on_delete=models.CASCADE, blank=True, null=True,
+                                     db_column='parent_id_tp')
 
     class Meta:
         managed = False
@@ -139,6 +142,7 @@ class TreeDeviceMercuryV(models.Model):
         managed = False
         db_table = 'tree_device_mercury_v'
 
+
 class DataMercuryV(models.Model):
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     energy_reset_sum = models.CharField(max_length=100, blank=True, null=True)
@@ -159,17 +163,15 @@ class TreeDeviceMercuryZ(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     parent_id = models.ForeignKey('self', on_delete=models.PROTECT, null=True, db_column='parent_id')
 
-
     class Meta:
         managed = False
         db_table = 'tree_device_mercury_z'
 
-class TreeMenuV(MPTTModel):
 
+class TreeMenuV(MPTTModel):
     name = models.CharField(max_length=50, blank=True, null=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     device = models.ForeignKey('DeviceMercuryV', on_delete=models.CASCADE, null=True)
-
 
     def __str__(self):
         return self.name
@@ -177,8 +179,8 @@ class TreeMenuV(MPTTModel):
     class MPTTmeta:
         order_insertion_by = ['name']
 
-class TreeMenuZ(MPTTModel):
 
+class TreeMenuZ(MPTTModel):
     name = models.CharField(max_length=50, blank=True, null=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     device = models.ForeignKey('DeviceMercuryZ', on_delete=models.CASCADE, null=True)
@@ -189,8 +191,8 @@ class TreeMenuZ(MPTTModel):
     class MPTTmeta:
         order_insertion_by = ['name']
 
-class TreeMenuS(MPTTModel):
 
+class TreeMenuS(MPTTModel):
     name = models.CharField(max_length=50, blank=True, null=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     device = models.ForeignKey('DeviceMercuryS', on_delete=models.CASCADE, null=True)
@@ -201,8 +203,8 @@ class TreeMenuS(MPTTModel):
     class MPTTmeta:
         order_insertion_by = ['name']
 
-class TreeMenuU(MPTTModel):
 
+class TreeMenuU(MPTTModel):
     name = models.CharField(max_length=50, blank=True, null=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     device = models.ForeignKey('DeviceMercuryU', on_delete=models.CASCADE, null=True)
@@ -212,4 +214,3 @@ class TreeMenuU(MPTTModel):
 
     class MPTTmeta:
         order_insertion_by = ['name']
-

@@ -11,9 +11,6 @@ tree.onclick = function (event) {
 
     let childrenContainer = event.target.parentNode.querySelector('ul');
 
-    /**
-     * РµСЃР»Рё РЅРµС‚ РІР»РѕР¶РµРЅРЅС‹С… РґРµС‚РµР№!
-     */
     if (!childrenContainer) return;
 
     childrenContainer.hidden = !childrenContainer.hidden;

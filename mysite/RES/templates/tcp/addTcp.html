@@ -9,7 +9,7 @@
 <div class="col-2 bg-light h-100 text-center" id="menu-all-tp">
     <ul class="tree" id="tree">
         {% recursetree menu %}
-        <li class="" onclick="showTp()">
+        <li class="" onclick="">
             {{ node.name }}
             {% if not node.is_leaf_node %}
             <ul hidden>

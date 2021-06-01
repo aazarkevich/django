@@ -95,9 +95,11 @@ class Substation(View):
     def delete_substation(request, id_substation):
         MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.filter(id=id_substation).delete()
         return HttpResponseRedirect(f'http://127.0.0.1:8000/res/addTcp/')
+        # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     @staticmethod
     def add_device(request, id_substation):
+
         if request.method == 'POST':
             form = AddDevice(request.POST)
             print(form)
@@ -107,9 +109,6 @@ class Substation(View):
                 device_ip = form.cleaned_data['ip']
                 device_port = form.cleaned_data['port']
                 device_serial_number = form.cleaned_data['serial_number']
-
-                # {'name': 'Т-1', 'ip': '192.168.143.12', 'port': Decimal('35176'), 'serial_number': Decimal('1111')}
-
                 device = MercuryTCP_IP.get_model_device(request.user.groups.all()[0]).objects.create(ip=device_ip,
                                                                                                      port=device_port,
                                                                                                      serial_number=device_serial_number)
@@ -122,11 +121,10 @@ class Substation(View):
         else:
             form = AddDevice()
             return form
-        # return HttpResponseRedirect(f'http://127.0.0.1:8000/res/addTcp/showSubstation/{id_substation}/')
 
     @staticmethod
     def delete_device(request, id_device):
-        MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.filter(id=id_device).delete()
+        MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.get(id=id_device).device.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 

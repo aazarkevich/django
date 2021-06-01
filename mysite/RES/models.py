@@ -71,8 +71,7 @@ class DeviceMercuryS(models.Model):
     ip = models.CharField(max_length=15)
     port = models.DecimalField(max_digits=65535, decimal_places=65535)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuS', on_delete=models.CASCADE, blank=True, null=True,
-                                     db_column='parent_id_tp')
+    parent_id_tp = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -83,8 +82,7 @@ class DeviceMercuryU(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuU', on_delete=models.CASCADE, blank=True, null=True,
-                                     db_column='parent_id_tp')
+    parent_id_tp = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -95,8 +93,7 @@ class DeviceMercuryV(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuV', on_delete=models.CASCADE, blank=True, null=True,
-                                     db_column='parent_id_tp')
+    parent_id_tp = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -107,8 +104,7 @@ class DeviceMercuryZ(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    parent_id_tp = models.ForeignKey('TreeMenuZ', on_delete=models.CASCADE, blank=True, null=True,
-                                     db_column='parent_id_tp')
+    parent_id_tp = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
     class Meta:
         managed = False

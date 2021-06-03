@@ -93,6 +93,7 @@ class DeviceMercuryV(models.Model):
     ip = models.CharField(max_length=15, blank=True, null=True)
     port = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     serial_number = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    network_address = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     parent_id_tp = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
     class Meta:

@@ -36,31 +36,7 @@
                                             <form action="{% url 'add_device' podstation.0.id %}" method="post">
                                                 {% csrf_token %}
                                                 <div class="form-group">
-                                                    <label for="id_name">Название:</label>
-                                                    {{ form_add_device.name }}
-                                                    <small id="nameHelpDevice" class="form-text text-muted">Пример:
-                                                        Т-1</small>
-                                                    <label for="id_serial_number">Серийный номер:</label>
-                                                    {{ form_add_device.serial_number }}
-
-                                                    {% if not podstation.1.device.ip %}
-                                                    <label for="id_ip">Ip:</label>
-
-                                                    {{ form_add_device.ip }}
-
-                                                    <small class="form-text text-muted">Пример:
-                                                        192.168.143.12</small>
-                                                    <label for="id_port">Порт:</label>
-                                                    {{ form_add_device.port }}
-                                                    {% else %}
-                                                    <label for="id_ip">Ip:</label>
-                                                    <p>
-                                                        {{ form_add_device.ip|default:podstation.1.device.ip }}
-                                                    </p>
-                                                    <label for="id_port">Порт:</label>
-                                                    {{ form_add_device.port }}
-
-                                                    {% endif %}
+                                                    {{form_device}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -101,12 +77,11 @@
                                                 {% csrf_token %}
                                                 <div class="form-group">
                                                     {% if not podstation.1.device.ip %}
-                                                    {{ form_add_substation }}
+                                                    {{ form_substation }}
                                                     <small class="form-text text-muted">Пример:
                                                         ТП-001</small>
                                                     {% else %}
-                                                    <label for="name">Название:</label>
-                                                    {{ form_add_substation }}
+                                                    {{ form_substation }}
 
                                                     <small class="form-text text-muted">Пример:
                                                         ТП-001</small>
@@ -188,6 +163,7 @@
                                         <div class="modal-body">
                                             <form action="{% url 'edit_device' children.id %}" method="post">
                                                 {% csrf_token %}
+                                                {{ form_device }}
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"

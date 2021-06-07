@@ -11,5 +11,5 @@ urlpatterns = [
     path('addTcp/deleteSubstation/<int:id_substation>/', views.Substation.delete_substation, name='delete_substation'),
     path('addTcp/addDevice/<int:id_substation>/', views.Substation.add_device, name='add_device'),
     path('addTcp/deleteDevice/<int:id_device>/', views.Substation.delete_device, name='delete_device'),
-    path('addTcp/editDevice/<int:id_device>/', views.Substation.edit_device, name='edit_device'),
+    path('addTcp/editDevice/<int:id_node_device>/', views.Substation.edit_device, name='edit_device'),
 ]

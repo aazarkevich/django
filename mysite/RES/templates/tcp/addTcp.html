@@ -42,7 +42,7 @@
                     <form action="{% url 'add_substation' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            {{ form_add_substation }}
+                            {{ form_substation }}
                             <small id="nameHelp" class="form-text text-muted">Пример: ТП-001</small>
                         </div>
                         <div class="modal-footer">

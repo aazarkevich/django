@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'main',
     'login',
     'RES',
+    'mercury',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
-# from .models import TreeMenuV, TreeMenuS, TreeMenuU, TreeMenuZ, DataMercuryV, DataMercuryZ, DataMercuryS, DataMercuryU, \
-#     DeviceMercuryV, DeviceMercuryS, DeviceMercuryU, DeviceMercuryZ
 from .models import *
 from django.views.generic import View
 from django.db.models import Q
@@ -11,7 +9,6 @@ from .forms import FormSubstation, FormDevice
 
 def index(request):
     return render(request, 'base.html', {'name_res': request.user.groups.all()[0]})
-
 
 class MercuryTCP_IP(View):
 
@@ -71,9 +68,10 @@ class Substation(View):
         if request.method == 'POST':
             form = FormSubstation(request.POST)
             if form.is_valid():
-                new_substation = MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.create(
+                new_substation = MercuryTCP_IP.get_model_substation(
+                    name_res=request.user.groups.all()[0]).objects.create(
                     name=form.cleaned_data['name'])
-                print(new_substation.id)
+
                 return HttpResponseRedirect(f'http://127.0.0.1:8000/res/addTcp/showSubstation/{new_substation.id}')
         else:
             form = FormSubstation()
@@ -182,7 +180,7 @@ class Substation(View):
 
 
 def add_tcp(request):
-    return render(request, 'tcp/addTcp.html',
+    return render(request, 'tcp/tcp.html',
                   {'menu': MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
                    'form_substation': Substation.add_substation(request)})
 

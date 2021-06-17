@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('main.urls')),
     path('login/', include('login.urls')),
     path('res/', include('RES.urls')),
+    path('mercury/', include('mercury.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

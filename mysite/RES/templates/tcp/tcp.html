@@ -24,7 +24,9 @@
 {% endblock %}
 {% block content %}
 <div class="col item">
-    <a type="button" class="btn add-substation" href="{% url 'add_tcp' %}" data-toggle="modal" data-target="#add_substation">
+    {% block button_active %}
+    <a type="button" class="btn add-substation" href="{% url 'add_tcp' %}" data-toggle="modal"
+       data-target="#add_substation">
         Добавить подстанцию
     </a>
     <div class="modal fade" id="add_substation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -55,6 +57,8 @@
             </div>
         </div>
     </div>
+    {% endblock %}
+
     {% load mptt_tags %}
     <div class="search_select">
         <select class="w-100 select_substation" data-live-search="true">

@@ -10,12 +10,26 @@ from .forms import FormSubstation, FormDevice
 def index(request):
     return render(request, 'base.html', {'name_res': request.user.groups.all()[0]})
 
+
 class MercuryTCP_IP(View):
 
     def get(self, request):
+        substations = MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.filter(
+            parent_id=None)
+        # for substation in name_substation:
+        #     print(substation)
+        print(substations.filter(id = '3').first())
+        print(substations)
+        for value in self.values_tp(name_res=request.user.groups.all()[0]):
+            try:
+
+                print(substations.get(id=value.id_tp.parent_id))
+            except Exception:
+                pass
         return render(request, 'tcp/menu.html',
                       {'menu': self.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
-                       'values': self.values_tp(name_res=request.user.groups.all()[0])})
+                       'values': self.values_tp(name_res=request.user.groups.all()[0]),
+                       'substations': substations})
 
     @staticmethod
     def get_model_substation(name_res):
@@ -41,7 +55,8 @@ class MercuryTCP_IP(View):
         elif name_res == 'Южный':
             return DeviceMercuryU
 
-    def values_tp(self, name_res):
+    @staticmethod
+    def values_tp(name_res):
         name_res = str(name_res)
         if name_res == 'Восточный':
             return DataMercuryV.objects.filter(

@@ -1,6 +1,6 @@
 from serial import Serial
 import time
-from .mercury import Mercury
+from mercury import Mercury
 
 
 class MercuryGSM(Mercury):

@@ -1,5 +1,6 @@
 import libscrc
 import datetime
+from .converted import Converted
 
 
 class Mercury:
@@ -12,15 +13,14 @@ class Mercury:
                         'energy_day': r"\x05\x40\x00",  # запрос начало тек суток
                         '3': r"\x06\x02\x06\xa6\x10"}
 
-    def __init__(self, serial_number: str, network_address = False):
+    def __init__(self, serial_number: str, network_address=False):
         """Серийный номер счетчика"""
-        if not isinstance(serial_number, str):
-            raise TypeError(str(type(serial_number)) + ' can not cast to str ')
+        # if not isinstance(serial_number, str):
+        #     raise TypeError(str(type(serial_number)) + ' can not cast to str ')
 
-        self.serial_number = serial_number
+        self.serial_number = str(serial_number)
         if network_address:
             self.network_address = network_address
-
         else:
             network_address = self._serial_number_to_network_adress(serial_number)
 
@@ -44,21 +44,14 @@ class Mercury:
 
         return result
 
-    @staticmethod
-    def str_to_byte(string):
-        """перевод из strByte -> Byte"""
-        string = string.encode()
-        string = string.decode('unicode-escape').encode('ISO-8859-1')
-        return string
-
     def _crc(self, command: str):
         """генерация CRC протокола"""
-        network_address_byte = self.str_to_byte(self.network_address_hex + command)
+        network_address_byte = Converted.str_to_byte(self.network_address_hex + command)
         crc16 = str(hex(libscrc.modbus(network_address_byte))[2:6])
         if len(crc16) < 4:
             crc16 = '0' + crc16
         query = self.network_address_hex + command + r'\x' + crc16[2:4] + r'\x' + crc16[0:2]
-        query_byte = self.str_to_byte(query)
+        query_byte = Converted.str_to_byte(query)
         return query_byte
 
     @property
@@ -68,10 +61,12 @@ class Mercury:
 
     @property
     def energy_reset_and_power_sum(self):
+        """Код для запроса на энергию и мощность от сброса"""
         return self._crc(self.COMMANDS_MERCURY['energy_reset_and_power_sum'])
 
     @property
     def energy_day(self):
+        """Код для запроса на энергию и мощность на начало суток"""
         return self._crc(self.COMMANDS_MERCURY['energy_day'])
 
 # mercury = Mercury('123456189')

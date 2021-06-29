@@ -2,6 +2,7 @@
 
 {% block show_podstation %}
 {% load mptt_tags %}
+{% load getValues %}
 <div class="container">
     <div class="row">
         <div class="col">
@@ -47,6 +48,25 @@
                             <li class="list-group-item ">
                                 сетевой адрес: {{children.device.network_address}}
                             </li>
+                            {% if values is not None %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Показания</th>
+                                    <th scope="col">Мощность</th>
+                                    <th scope="col">Ошибка</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{ values|get_energy:children.device.serial_number}}</td>
+                                    <td>{{ values|get_power:children.device.serial_number }}</td>
+                                    <td>{{ values|get_error:children.device.serial_number }}</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                            {% endif %}
                         </ul>
 
                     </li>

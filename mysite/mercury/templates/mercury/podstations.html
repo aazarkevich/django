@@ -5,7 +5,7 @@
 
 
 {% block button_active%}
-<a type="button" class="btn add-substation" href="http://127.0.0.1:8000/res/menu/"
+<a type="button" class="btn add-substation" href="/res/menu/"
        data-target="">
         Просмотр показаний
     </a>
@@ -16,7 +16,7 @@
 {% block script %}
 {% load static %}
 <script type="text/javascript" src="{% static 'res/js/menu.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="{% static 'res/js/bootstrap-select.min.js' %}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.search_select select').selectpicker();
@@ -30,7 +30,7 @@
             } else if (timesSelectClicked == 1) {
                 // alert($('.select_podstation option:selected').val());
                 timesSelectClicked = 1;
-                window.location.href = 'http://127.0.0.1:8000/mercury/TcpIp/' + $('.select_substation option:selected').val() + '/';
+                window.location.href = '/mercury/TcpIp/' + $('.select_substation option:selected').val() + '/';
             }
         });
     });

@@ -16,7 +16,7 @@ class Autorization(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(f'http://127.0.0.1:8000/res/')
+                return HttpResponseRedirect(f'/res/')
         else:
             return HttpResponse('Неверный логин или пароль')
 

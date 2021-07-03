@@ -13,7 +13,7 @@ $(document).ready(function(){
         {
             // alert($('.select_podstation option:selected').val());
             timesSelectClicked = 1;
-            window.location.href = 'http://127.0.0.1:8000/res/addTcp/showSubstation/' + $('.select_substation option:selected').val() + '/';
+            window.location.href = '/res/addTcp/showSubstation/' + $('.select_substation option:selected').val() + '/';
         }
   });
 });

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     # print(request.user.get_full_name)
     # if request.user.is_authenticated:
-    return HttpResponseRedirect(f'http://127.0.0.1:8000/res/')
+    return HttpResponseRedirect(f'/res/')
 
 def about(request):
     return render(request, 'main/about.html')

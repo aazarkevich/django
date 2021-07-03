@@ -16,16 +16,8 @@ class MercuryTCP_IP(View):
     def get(self, request):
         substations = MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.filter(
             parent_id=None)
-        # for substation in name_substation:
-        #     print(substation)
-        print(substations.filter(id = '3').first())
-        print(substations)
-        for value in self.values_tp(name_res=request.user.groups.all()[0]):
-            try:
 
-                print(substations.get(id=value.id_tp.parent_id))
-            except Exception:
-                pass
+
         return render(request, 'tcp/menu.html',
                       {'menu': self.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
                        'values': self.values_tp(name_res=request.user.groups.all()[0]),
@@ -87,7 +79,7 @@ class Substation(View):
                     name_res=request.user.groups.all()[0]).objects.create(
                     name=form.cleaned_data['name'])
 
-                return HttpResponseRedirect(f'http://127.0.0.1:8000/res/addTcp/showSubstation/{new_substation.id}')
+                return HttpResponseRedirect(f'/res/addTcp/showSubstation/{new_substation.id}')
         else:
             form = FormSubstation()
             return form
@@ -111,6 +103,7 @@ class Substation(View):
                 MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.filter(
                     id=id_substation).update(name=new_name)
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             form = FormSubstation()
             return form
@@ -118,7 +111,7 @@ class Substation(View):
     @staticmethod
     def delete_substation(request, id_substation):
         MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.filter(id=id_substation).delete()
-        return HttpResponseRedirect('http://127.0.0.1:8000/res/addTcp/')
+        return HttpResponseRedirect('/res/addTcp/')
 
     @staticmethod
     def add_device(request, id_substation):

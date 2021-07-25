@@ -88,11 +88,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES={
    'default':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'mercury2020',
+      'NAME':'mercury',
       'USER':'postgres',
-      'PASSWORD':'',
-      'HOST':'192.168.143.177',
+      'PASSWORD':'postgres',
+      'HOST':'localhost',
       'PORT':'5432',
+      # 'HOST':'192.168.143.177',
+      # 'PORT':'5432',
    }
 }
 

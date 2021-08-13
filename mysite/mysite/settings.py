@@ -91,10 +91,10 @@ DATABASES={
       'NAME':'mercury',
       'USER':'postgres',
       'PASSWORD':'postgres',
-      'HOST':'localhost',
-      'PORT':'5432',
-      # 'HOST':'192.168.143.177',
+      # 'HOST':'localhost',
       # 'PORT':'5432',
+      'HOST':'192.168.143.177',
+      'PORT':'5432',
    }
 }
 

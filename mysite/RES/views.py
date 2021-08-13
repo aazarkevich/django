@@ -17,10 +17,11 @@ class MercuryTCP_IP(View):
         substations = MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.filter(
             parent_id=None)
 
-
         return render(request, 'tcp/menu.html',
                       {'menu': self.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
-                       'values': self.values_tp(name_res=request.user.groups.all()[0]),
+                       'values': self.values_tp(name_res=request.user.groups.all()[0]).objects.filter(
+                           date=datetime.now().strftime("%Y-%m-%d")).order_by(
+                           'id'),
                        'substations': substations})
 
     @staticmethod
@@ -51,21 +52,13 @@ class MercuryTCP_IP(View):
     def values_tp(name_res):
         name_res = str(name_res)
         if name_res == 'Восточный':
-            return DataMercuryV.objects.filter(
-                date=datetime.now().strftime("%Y-%m-%d")).order_by(
-                'id')
+            return DataMercuryV
         elif name_res == 'Западный':
-            return DataMercuryZ.objects.filter(
-                date=datetime.now().strftime("%Y-%m-%d")).order_by(
-                'id')
+            return DataMercuryZ
         elif name_res == 'Северный':
-            return DataMercuryS.objects.filter(
-                date=datetime.now().strftime("%Y-%m-%d")).order_by(
-                'id')
+            return DataMercuryS
         elif name_res == 'Южный':
-            return DataMercuryU.objects.filter(
-                date=datetime.now().strftime("%Y-%m-%d")).order_by(
-                'id')
+            return DataMercuryU
 
 
 class Substation(View):
@@ -152,6 +145,8 @@ class Substation(View):
 
     @staticmethod
     def delete_device(request, id_device):
+        for data in MercuryTCP_IP.values_tp(request.user.groups.all()[0]).objects.filter(id_tp=id_device):
+            data.delete()
         MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.get(id=id_device).device.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 

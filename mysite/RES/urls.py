@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
+from datetime import datetime
 
 urlpatterns = [
     path('', views.index),
-    path('menu/', views.MercuryTCP_IP.as_view(), name='menu'),
+    path('menu/<slug:date>', views.MercuryTCP_IP.as_view(), name='menu'),
     path('addTcp/', views.add_tcp, name='add_tcp'),
     path('addTcp/showSubstation/<int:id_substation>/', views.show_substation, name='show_substation'),
     path('addTcp/addSubstation/', views.Substation.add_substation, name='add_substation'),

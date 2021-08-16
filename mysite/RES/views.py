@@ -8,21 +8,23 @@ from .forms import FormSubstation, FormDevice
 
 
 def index(request):
-    return render(request, 'base.html', {'name_res': request.user.groups.all()[0]})
+    return render(request, 'base.html',
+                  {'name_res': request.user.groups.all()[0], 'date': datetime.now().strftime("%Y-%m-%d")})
 
 
 class MercuryTCP_IP(View):
 
-    def get(self, request):
+    def get(self, request, date=datetime.now().strftime("%Y-%m-%d")):
         substations = MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.filter(
             parent_id=None)
 
         return render(request, 'tcp/menu.html',
                       {'menu': self.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
                        'values': self.values_tp(name_res=request.user.groups.all()[0]).objects.filter(
-                           date=datetime.now().strftime("%Y-%m-%d")).order_by(
+                           date=date).order_by(
                            'id'),
-                       'substations': substations})
+                       'substations': substations,
+                       'date': datetime.now().strftime("%Y-%m-%d")})
 
     @staticmethod
     def get_model_substation(name_res):

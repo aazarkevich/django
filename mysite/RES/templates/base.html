@@ -26,7 +26,7 @@
                         Меркурий TCP/IP
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tcp">
-                        <a class="dropdown-item" href="{% url 'menu' %}">Просмотр всех ТП</a>
+                        <a class="dropdown-item" href="{% url 'menu' date=date %}">Просмотр всех ТП</a>
                         <a class="dropdown-item" href="{% url 'add_tcp' %}">Редактировать ТП</a>
                         <a class="dropdown-item" href="{% url 'mercury' %}">Опрос</a>
 <!--                        <a class="dropdown-item" href=" http://127.0.0.1:8000/mercury/TcpIp/{{id_first_substation|default:''}}/">Опрос</a>-->

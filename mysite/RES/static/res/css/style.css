@@ -58,3 +58,7 @@
     color: #dae0e6 !important;
 
 }
+
+span:hover {
+    cursor: pointer;
+}

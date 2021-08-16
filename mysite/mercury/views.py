@@ -31,5 +31,5 @@ class SubstationValues(View):
                        'podstation': MercuryTCP_IP.get_model_substation(
                            name_res=request.user.groups.all()[0]).objects.filter(
                            Q(id=id_substation) | Q(parent_id=id_substation)),
-                       'values': values
+                       'values': values,
                        })

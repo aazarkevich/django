@@ -187,7 +187,8 @@ class Substation(View):
 def add_tcp(request):
     return render(request, 'tcp/tcp.html',
                   {'menu': MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
-                   'form_substation': Substation.add_substation(request)})
+                   'form_substation': Substation.add_substation(request),
+                   'date': datetime.now().strftime("%Y-%m-%d")})
 
 
 def show_substation(request, id_substation):

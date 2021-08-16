@@ -2,13 +2,15 @@ from RES.views import MercuryTCP_IP
 from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import View
+from datetime import datetime
 
 from .mercury_device.mercuryTCP import MercuryTCP
 
 
 def index(request):
     return render(request, 'mercury/podstations.html',
-                  {'menu': MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.all()})
+                  {'menu': MercuryTCP_IP.get_model_substation(name_res=request.user.groups.all()[0]).objects.all(),
+                   'date': datetime.now().strftime("%Y-%m-%d")})
 
 class SubstationValues(View):
     def get(self, request, id_substation):

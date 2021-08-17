@@ -98,7 +98,6 @@ class Substation(View):
                 MercuryTCP_IP.get_model_substation(request.user.groups.all()[0]).objects.filter(
                     id=id_substation).update(name=new_name)
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             form = FormSubstation()
             return form
@@ -199,4 +198,4 @@ def show_substation(request, id_substation):
                        Q(id=id_substation) | Q(parent_id=id_substation)),
                    'form_substation': Substation.add_substation(request),
                    'form_device': Substation.edit_device(request, id_substation),
-                   })
+                   'date': datetime.now().strftime("%Y-%m-%d")})

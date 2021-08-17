@@ -5,7 +5,7 @@
 
 
 {% block button_active%}
-<a type="button" class="btn add-substation" href="/res/menu/"
+<a type="button" class="btn add-substation" href="{% url 'menu' date=date %}"
        data-target="">
         Просмотр показаний
     </a>

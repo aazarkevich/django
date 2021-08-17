@@ -32,4 +32,5 @@ class SubstationValues(View):
                            name_res=request.user.groups.all()[0]).objects.filter(
                            Q(id=id_substation) | Q(parent_id=id_substation)),
                        'values': values,
+                       'date': datetime.now().strftime("%Y-%m-%d")
                        })
